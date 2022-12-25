@@ -21,9 +21,12 @@ const ListHome = () => {
         <div>Loading...</div>
       ) : (
         <div>
-          <h3 className='text-2xl text-black font-semibold'>
-            Homes guests love
-          </h3>
+          {data.length > 0 && (
+            <h3 className='text-2xl text-black font-semibold'>
+              Homes guests love
+            </h3>
+          )}
+
           <div className='grid xl:grid-cols-4 gap-x-3 md:grid-cols-2 mt-2'>
             {data.length > 0 &&
               data.map((d, i) => (

@@ -36,7 +36,9 @@ export const Login = () => {
     dispatch({ type: 'LOGIN_START' });
     setLoading(true);
     try {
-      const res = await axios.post(`${URL}/auth/login`, value);
+      const res = await axios.post(`${URL}/auth/login`, value, {
+        withCredentials: false,
+      });
       openNotificationWithIcon('success', 'Login', 'Login success');
       dispatch({ type: 'LOGIN_SUCCESS', payload: res.data });
       reset({

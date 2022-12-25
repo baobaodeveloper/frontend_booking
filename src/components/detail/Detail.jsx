@@ -57,7 +57,7 @@ const Detail = ({ data, dateStay, options }) => {
               Reserve or Book now!
             </button>
           </div>
-          <SlideImage />
+          <SlideImage photos={data.photos} />
           <div className='lg:flex gap-2 items-start'>
             <div className='lg:flex-1 w-full'>
               <h2 className='text-3xl font-bold lg:text-left text-center'>

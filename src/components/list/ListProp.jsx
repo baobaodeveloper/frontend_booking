@@ -54,7 +54,7 @@ const ListProp = () => {
 
   return (
     <>
-      <div className='flex items-center justify-between flex-wrap w-full text-white'>
+      <div className='flex items-center gap-6 flex-wrap w-full text-white'>
         {listCity.length > 0 &&
           listCity.map((d, i) => (
             <div

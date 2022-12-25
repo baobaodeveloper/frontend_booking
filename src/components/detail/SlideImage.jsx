@@ -7,15 +7,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Pagination, Navigation } from 'swiper';
 
-const items = [
-  'https://images.unsplash.com/photo-1665686307516-1915b9616526?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-  'https://images.unsplash.com/photo-1669072596436-15df4a8c083d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-  'https://images.unsplash.com/photo-1661956600654-edac218fea67?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=736&q=80',
-  'https://images.unsplash.com/photo-1669054078259-9f305691b761?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80',
-  'https://images.unsplash.com/photo-1666085575722-bdf8a510c2c1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=711&q=80',
-  'https://images.unsplash.com/photo-1669350267597-98fbb1a57f65?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-];
-const SlideImage = () => {
+const SlideImage = ({ photos }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [index, setIndex] = useState(0);
 
@@ -31,26 +23,27 @@ const SlideImage = () => {
 
   return (
     <div className='w-full grid grid-cols-12 gap-2'>
-      {items.map((img, i) => (
-        <div
-          key={i}
-          className='lg:col-span-4 col-span-6 rounded-md overflow-hidden cursor-pointer'
-        >
+      {photos &&
+        photos.map((img, i) => (
           <div
-            onClick={() => {
-              showModal();
-              setIndex(i);
-            }}
-            className='w-full'
+            key={i}
+            className='lg:col-span-4 col-span-6 rounded-md overflow-hidden cursor-pointer'
           >
-            <img
-              className='w-full h-[200px] object-cover'
-              src={img}
-              alt={img}
-            />
+            <div
+              onClick={() => {
+                showModal();
+                setIndex(i);
+              }}
+              className='w-full'
+            >
+              <img
+                className='w-full h-[200px] object-cover'
+                src={img}
+                alt={img}
+              />
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
       <Modal
         footer={false}
         wrapClassName='image-slider'
@@ -74,15 +67,16 @@ const SlideImage = () => {
           className='swiper'
         >
           <div>
-            {items.map((img, i) => (
-              <SwiperSlide key={i}>
-                <img
-                  className='w-full h-[350px] object-cover'
-                  src={img}
-                  alt={img}
-                />
-              </SwiperSlide>
-            ))}
+            {photos &&
+              photos.map((img, i) => (
+                <SwiperSlide key={i}>
+                  <img
+                    className='w-full h-[350px] object-cover'
+                    src={img}
+                    alt={img}
+                  />
+                </SwiperSlide>
+              ))}
           </div>
         </Swiper>
       </Modal>
